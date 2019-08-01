@@ -33,6 +33,8 @@ console.log(funcA);  //输出 function funcA(){//...... }
      use: {
      ##### loader: 'babel-loader',
         options: {
+        //babel默认会将ES6转换成commonjs，而commonjs的require是导出整个module.export的内容（包括default），
+        //此处的配置让ES6的import只加载需要的内容，而不是整个module.export的内容
      #####    presets: [['babel-preset-env', {modules: false}]],
         }
       }
