@@ -1,0 +1,43 @@
+## ES6导出时，提示变量或方法undefined的解决方法
+
+## 此处提供的方法仅供参考，具体还要看报错信息。
+
+###　首先要保证导出导入尽量符合ES6规范
+
+#### 例如
+
+//testA.js 导出
+function funcA(){
+   //......
+}
+//保证export在最上层，如果只有一个导出，可以用export default，如果报错，注意此处的大括号 "{}"，导出多个应放置在大括号里面。
+export {funcA};
+
+
+//testB.js 导入 如果报错，注意此处的大括号 "{}"，导入多个请放置在大括号里面
+import {funcA} from './testA.js';
+console.log(funcA);  //输出 function funcA(){//...... }
+
+
+###　webpack.config.js中的配置参考
+ module: {
+  rules: [
+
+   { test: /\.css$/, loader: 'style-loader!css-loader' },    //.css 文件使用 style-loader 和 css-loader 来处理
+   { test: /\.less$/,loader: 'style-loader!css-loader!less-loader'},
+   { test: /\.(ttf|eot|svg|woff|woff2)$/, loader: 'url-loader' }, // 处理 字体文件的 loader 
+
+   { //按照最新的ES6语法规则去转换
+    ##### test: /\.js$/,
+     exclude: /(node_modules|bower_components)/,
+     use: {
+     ##### loader: 'babel-loader',
+        options: {
+     #####    presets: [['babel-preset-env', {modules: false}]],
+        }
+      }
+    },
+   //图片文件使用 url-loader 来处理，小于8kb的直接转为base64
+   { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
+   ]
+ },
