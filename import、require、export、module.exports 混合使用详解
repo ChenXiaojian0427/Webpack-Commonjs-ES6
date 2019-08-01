@@ -1,11 +1,11 @@
-#本文转载于：
+# 本文转载于：
 作者：2dunn
 链接：https://juejin.im/post/5a2e5f0851882575d42f5609
 来源：掘金
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 
-#前言
+# 前言
 自从使用了 es6 的模块系统后，各种地方愉快地使用 import export default，但也会在老项目中看到使用commonjs规范的 require module.exports。甚至有时候也会常常看到两者互用的场景。使用没有问题，但其中的关联与区别不得其解，使用起来也糊里糊涂。比如：
 
 为何有的地方使用 require 去引用一个模块时需要加上 default？ require('xx').default
